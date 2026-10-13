@@ -1,36 +1,42 @@
-// Moon AI Health Check v2.0 - manual HTTP trigger.
-// Only fetches public homepages. No cookies, tokens or account APIs.
+// Moon AI Health Check v3.0: manual public homepage probe.
+// No authentication, cookies, request interception, or MITM.
 const sites = [
   { name: "ChatGPT", url: "https://chatgpt.com/" },
   { name: "Claude", url: "https://claude.ai/" },
-  { name: "Gemini", url: "https://gemini.google.com/" }
+  { name: "Gemini", url: "https://gemini.google.com/" },
+  { name: "Grok", url: "https://grok.com/" },
+  { name: "Perplexity", url: "https://www.perplexity.ai/" },
+  { name: "DeepSeek", url: "https://www.deepseek.com/" }
 ];
 const results = new Array(sites.length);
 let pending = sites.length;
 let finished = false;
 function complete() {
-  if (finished || --pending !== 0) return;
+  if (--pending !== 0 || finished) return;
   finished = true;
   const body = JSON.stringify({
     lab: "Moon AI Health Check",
+    version: "3.0",
     mode: "manual",
-    note: "Public homepage HTTP checks only; 403/429 can reflect bot protection, not outage.",
+    note: "HTTP homepage reachability only. 403/429 may be bot protection; errors cannot reliably distinguish DNS, TLS and network failures.",
     results
   }, null, 2);
-  $done({ response: { status: 200, headers: {
+  $done({response: {status: 200, headers: {
     "Content-Type": "application/json; charset=utf-8",
     "Cache-Control": "no-store"
-  }, body } });
+  }, body}});
 }
 sites.forEach((site, index) => {
+  const start = Date.now();
   try {
-    $httpClient.get({ url: site.url, timeout: 8 }, (error, response) => {
+    $httpClient.get({url: site.url, timeout: 10}, (error, response) => {
       const code = response && (response.status || response.statusCode);
-      results[index] = { name: site.name, status: error ? "network_error" : (code ? "HTTP_" + code : "no_response") };
+      const status = error ? "network_error" : (code ? "HTTP_" + code : "no_response");
+      results[index] = {name: site.name, status, elapsed_ms: Date.now() - start};
       complete();
     });
   } catch (e) {
-    results[index] = { name: site.name, status: "request_error" };
+    results[index] = {name: site.name, status: "request_error", elapsed_ms: Date.now() - start};
     complete();
   }
 });
