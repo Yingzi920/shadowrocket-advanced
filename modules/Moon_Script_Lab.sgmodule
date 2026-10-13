@@ -1,0 +1,4 @@
+#!name=Moon Script Lab
+#!desc=HTTP-only local JSON response on a dedicated example.com test path; no MITM
+[Script]
+moon-request-lab = type=http-request,pattern=^http://example\\.com/moon-script-lab-test(?:\\?.*)?$,script-path=https://raw.githubusercontent.com/Yingzi920/shadowrocket-advanced/main/scripts/moon_request_lab.js,requires-body=false,timeout=10
