@@ -1,0 +1,5 @@
+#!name=Moon Rewrite Lab
+#!desc=v1.0 HTTP-only redirect lab; no MITM or scripts
+
+[URL Rewrite]
+^http://example\.com/moon-rewrite-lab-test(?:\?.*)?$ https://example.org/ 302
