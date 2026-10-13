@@ -1,5 +1,5 @@
 #!name=Moon Privacy Lite
-#!desc=基础广告与追踪域名过滤｜无需MITM
+#!desc=v2.0 基础广告与第三方追踪过滤｜无需MITM
 
 [Rule]
 DOMAIN-SUFFIX,doubleclick.net,REJECT
@@ -9,3 +9,8 @@ DOMAIN-SUFFIX,adnxs.com,REJECT
 DOMAIN-SUFFIX,adsrvr.org,REJECT
 DOMAIN-SUFFIX,taboola.com,REJECT
 DOMAIN-SUFFIX,outbrain.com,REJECT
+DOMAIN-SUFFIX,scorecardresearch.com,REJECT
+DOMAIN-SUFFIX,quantserve.com,REJECT
+DOMAIN-SUFFIX,criteo.com,REJECT
+DOMAIN-SUFFIX,criteo.net,REJECT
+DOMAIN-SUFFIX,ads-twitter.com,REJECT
