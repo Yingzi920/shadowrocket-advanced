@@ -1,4 +1,5 @@
 #!name=Moon AI Health Check
-#!desc=Manual-first public homepage connectivity check; no MITM
+#!desc=v2.0 Manual HTTP test plus existing daily cron; no MITM
 [Script]
 moon-ai-health = type=cron,cronexp="0 0 12 * * *",script-path=https://raw.githubusercontent.com/Yingzi920/shadowrocket-advanced/main/scripts/moon_ai_health.js,timeout=35
+moon-ai-health-manual = type=http-request,pattern=^http://example\.com/moon-ai-health-check(?:\?.*)?$,script-path=https://raw.githubusercontent.com/Yingzi920/shadowrocket-advanced/main/scripts/moon_ai_health_manual.js,requires-body=false,timeout=35
