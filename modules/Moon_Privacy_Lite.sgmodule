@@ -1,22 +1,8 @@
 #!name=Moon Privacy Lite
-#!desc=v2.1 多来源精选广告与第三方追踪过滤｜无需MITM｜保留AI与国内App核心域名
+#!desc=v2.2 兼容优先｜仅保留2条独立统计域名过滤｜不拦截Google广告与跳转｜无需MITM
 
 [Rule]
-DOMAIN-SUFFIX,doubleclick.net,REJECT
-DOMAIN-SUFFIX,googlesyndication.com,REJECT
-DOMAIN-SUFFIX,googleadservices.com,REJECT
-DOMAIN-SUFFIX,adnxs.com,REJECT
-DOMAIN-SUFFIX,adsrvr.org,REJECT
-DOMAIN-SUFFIX,taboola.com,REJECT
-DOMAIN-SUFFIX,outbrain.com,REJECT
+# Conservative mode: only standalone analytics domains.
+# Google Ads / DoubleClick / affiliate redirects deliberately not blocked.
 DOMAIN-SUFFIX,scorecardresearch.com,REJECT
 DOMAIN-SUFFIX,quantserve.com,REJECT
-DOMAIN-SUFFIX,criteo.com,REJECT
-DOMAIN-SUFFIX,criteo.net,REJECT
-DOMAIN-SUFFIX,ads-twitter.com,REJECT
-DOMAIN-SUFFIX,moatads.com,REJECT
-DOMAIN-SUFFIX,casalemedia.com,REJECT
-DOMAIN-SUFFIX,smartadserver.com,REJECT
-DOMAIN-SUFFIX,advertising.com,REJECT
-DOMAIN-SUFFIX,pubmatic.com,REJECT
-DOMAIN-SUFFIX,rubiconproject.com,REJECT
