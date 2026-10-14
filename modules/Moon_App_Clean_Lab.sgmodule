@@ -1,0 +1,7 @@
+#!name=Moon App Clean Lab
+#!desc=v0.1 Xianyu splash-only experimental rewrite; requires scoped HTTPS MITM; OFF until manually imported
+# Source reference: skernelx/SurgeScripts xianyu/xianyu-ad-block.sgmodule
+# IMPORTANT: This module is experimental and is not enabled by updating Moon Privacy Lite.
+# This rule targets only a known splash-ad endpoint, not all goofish/taobao APIs.
+[URL Rewrite]
+^https://acs\.m\.goofish\.com/gw/mtop\.taobao\.idlecommerce\.splash\.async\.ads(?:/|\?|$) - reject
